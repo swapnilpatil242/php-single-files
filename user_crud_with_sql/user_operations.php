@@ -1,4 +1,8 @@
 <?php
+  session_start();
+  // session_unset();
+  // session_destroy();
+  
   // Default values
   $id = 0;
   $name = '';
@@ -29,6 +33,8 @@
     $sql = "insert into Users(name, email, password) values('$name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
+      $_SESSION["message"] = "New record created successfully";
+      $_SESSION["message_type"] = "success";
       echo "New record created successfully";
       header("location: users.php");
     } else {
@@ -43,6 +49,8 @@
     // sql to delete a record
     $sql = "DELETE FROM Users WHERE id=$id";
     if ($conn->query($sql) === TRUE) {
+      $_SESSION["message"] = "Record deleted successfully";
+      $_SESSION["message_type"] = "danger";
       echo "Record deleted successfully";
       header("location: users.php");
     } else {
@@ -71,6 +79,8 @@
     $password=$_POST["password"];
     $sql_query ="update Users set name='$name', email='$email', password='$password' where id=$id";
     if ($conn->query($sql_query) === TRUE) {
+      $_SESSION["message"] = "Record updated successfully";
+      $_SESSION["message_type"] = "success";
       echo "Record updated successfully";
       header("location: users.php");
     } else {

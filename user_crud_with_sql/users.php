@@ -1,10 +1,14 @@
-
-<br />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <?php require_once 'user_operations.php'; ?>
+<?php
+    if(isset($_SESSION["message"])) { ?>
+    <div class="alert alert-<?php echo $_SESSION['message_type'] ?>">
+      <?php echo $_SESSION["message"]; ?>
+    </div>
+<?php unset($_SESSION["message"]); } ?>
 
-<div>
-  <a href="users.php">Default View</a>
-
+<div style="padding: 20px;">
+  <p><a href="users.php">Default View</a></p>
   <div> 
     <!-- Form template -->
     <form action="user_operations.php", method="POST">
@@ -27,13 +31,15 @@
   </div>
   <div>
     <!-- User list table template -->
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>password</th>
-        <th colspan="2">Actions</th>
-      </tr>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>password</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead>
       <?php if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) { ?>
           <tr>
