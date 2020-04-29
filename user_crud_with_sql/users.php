@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+.error {color: #FF0000;}
+</style>
+
 <?php require_once 'user_operations.php'; ?>
 <?php
     if(isset($_SESSION["message"])) { ?>
@@ -9,10 +14,26 @@
 
 <div style="padding: 20px;">
   <p><a href="users.php">Default View</a></p>
+  <!-- Login View -->
+  <div>
+    <?php if(isset($_SESSION["login_user"])) { ?>
+      <span style="border: 1px solid black;">Login user is : <b><?php echo $_SESSION["login_user"] ?> </b></span>
+      &nbsp;<a href="user_operations.php?logout" class="btn btn-primary">LogOut</a>
+    <?php } else { ?>
+      <form action="user_operations.php", method="POST">
+        <input type="text" name="email" placeholder="Enter email">
+        <input type="password" name="password" placeholder="Enter password">
+        <button type="submit" name="login" class="btn btn-info">login</button>
+      </form>
+    <?php } ?>
+    
+      
+  </div>
   <div> 
     <!-- Form template -->
     <form action="user_operations.php", method="POST">
         <br />
+        Create new User ::=> 
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <label>Name</label>
         <input type="text" name="name" placeholder="Enter Name" value="<?php echo $name ?>">
