@@ -41,5 +41,48 @@ final class CalculatorTests extends TestCase
     $result = $this->calculator->stringUpper("swapnil");
     $this->assertEquals("SWAPNIL", $result);
   }
+
+  // Data provider
+  // A data provider method return an array of arrays or an object that implements the Iterator interface. 
+  // The test method will be called with the contents of the array as its arguments.
+  // Data provider method must be public.
+  // Data provider return an array of a collection data.
+  // Test method use annotation(@dataProvider) to declare its data provider method
+  // When need to call same function with diff values then used data provider
+  // Below defind the data provider
+  public function addDataProvider() {
+    return array(
+      array(2, 7, 9),
+      array(0, 4, 4),
+      array(5, 1, 6),
+    );
+  }
+
+  // Use data provider
+  /**
+   * @dataProvider addDataProvider
+   */
+  public function testAddWithDataProvider($elem1, $elem2, $expected) {
+    $result = $this->calculator->add($elem1, $elem2);
+    $this->assertEquals($expected, $result);
+  }
+
+  // created data provider
+  public function addDataProviderForUpperString() {
+    return array(
+      array("swapnil", "SWAPNIL"),
+      array("software engineer", "SOFTWARE ENGINEER")
+    );
+  }
+  // used above data provider
+  /**
+   * @dataProvider addDataProviderForUpperString
+   */
+  public function testUpperCaseWithDataProvider($get_string, $expected) {
+    $result = $this->calculator->stringUpper($get_string);
+    $this->assertEquals($expected, $result);
+  }
+
+
 }
 ?>
