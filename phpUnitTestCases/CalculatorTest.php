@@ -3,7 +3,7 @@
 require 'Calculator.php';
 use PHPUnit\Framework\TestCase;
 
-final class CalculatorTests extends TestCase
+final class CalculatorTest extends TestCase
 {
   // test case for add
   // public function testAdd()
