@@ -1,7 +1,7 @@
 <?php
 
 abstract class Animal  {  
-  public $name;  
+  public $name;
   public $age; 
   
   public function Describe() {  
@@ -19,6 +19,8 @@ class cat extends Animal {
     return parent::Describe() . ", and I'm a cat!";      
   }
 }
+// //You can't initiate object
+//$animal = new Animal(); //Uncaught Error: Cannot instantiate abstract class
 
 $animal = new cat();  
 $animal->name = "Seru";  
@@ -27,6 +29,10 @@ echo $animal->Describe();
 echo "\n";
 echo $animal->Greet();  
 echo "\n";
+// O/P ::
+// Seru, 5 years old, and I'm a cat!
+// Lion!
+
 
 # Abstraction :: (An abstract class or method is defined with the abstract keyword)
 // It shows only useful information, remaining are hidden form the end user. Abstraction is the any representation of data in which the implementation details are hidden (abstracted).
